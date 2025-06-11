@@ -17,6 +17,9 @@ export class Account {
   }
 
   addTransaction(transaction: Transaction): void {
+    if (transaction.type !== "deposit" && transaction.type !== "withdrawal")
+      throw new Error("Invalid transaction type");
+
     if (transaction.type == "deposit") {
       this.balance += transaction.amount;
     } else {

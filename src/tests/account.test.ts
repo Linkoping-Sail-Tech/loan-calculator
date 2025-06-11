@@ -37,16 +37,27 @@ describe("Account Balance Calculator", () => {
 
     it("should remove from balance on withdrawal", () => {
       const withdrawal: Transaction = {
-        id: '1',
+        id: "1",
         amount: 500,
-        type: 'withdrawal',
-        date: new Date()
-      }
+        type: "withdrawal",
+        date: new Date(),
+      };
 
       account.addTransaction(withdrawal);
       expect(account.getBalance()).toBe(500);
     });
 
-    //We should test the types withdrawal or deposit.
+    it("should throw an error when adding transaction of wrong type", () => {
+      const invalidTransaction: Transaction = {
+        id: "1",
+        amount: 500,
+        type: "invalid" as any, // Force an invalid type
+        date: new Date(0),
+      };
+
+      expect(() => account.addTransaction(invalidTransaction)).toThrow(
+        "Invalid transaction type"
+      );
+    });
   });
 });
