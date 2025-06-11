@@ -6,15 +6,22 @@ export interface Transaction {
 }
 
 export class Account {
-  constructor(private initialBalance: number = 0) {}
+  balance: number;
 
-  // TODO: Implement these methods using TDD
+  constructor(private initialBalance: number = 0) {
+    this.balance = initialBalance;
+  }
+
   getBalance(): number {
-    throw new Error("Not implemented");
+    return this.balance;
   }
 
   addTransaction(transaction: Transaction): void {
-    throw new Error("Not implemented");
+    if (transaction.type == "deposit") {
+      this.balance += transaction.amount;
+    } else {
+      this.balance -= transaction.amount;
+    }
   }
 
   getTransactionHistory(): Transaction[] {
