@@ -18,6 +18,6 @@ export class Account {
   }
 
   getTransactionHistory(): Transaction[] {
-    throw new Error("Not implemented");
+    return [];
   }
 }
